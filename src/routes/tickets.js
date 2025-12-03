@@ -1,10 +1,10 @@
+import {create} from "../controllers/ticketControllers/create.js"; 
+
 export const tickets = [
     {
         method: "POST", 
         path: "/tickets", 
-        controller: (req,res) => { 
-            res.end("CRIADO COM SUCESSO")
-        }
+        controller: create, 
     }, 
 
 ]
