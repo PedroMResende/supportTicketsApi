@@ -30,8 +30,35 @@ export class Database {
         return data
     }; 
 
-    select(table) { 
+    update(table, id, data) {
+        const rowIndex = this.#database[table].findIndex((row) => row.id === id); 
+
+        if(rowIndex > -1) {
+
+            this.#database[table][rowIndex] = {
+                ...this.#database[table][rowIndex],
+                ...data
+            }; 
+
+            this.#persist()
+        
+        }
+    }
+
+    select(table, filters) { 
         let data = this.#database[table] ?? [];
+        console.log(filters)
+
+        if(filters) {
+            data = data.filter((row) => { 
+                return Object.entries(filters).some(([key,value]) => {
+                    return row[key].toLowerCase().includes(value.toLowerCase()); 
+                })
+                console.log(test)
+            }); 
+
+        }; 
+
         return data
     }
 }
