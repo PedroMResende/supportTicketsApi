@@ -4,7 +4,6 @@ import {randomUUID} from "node:crypto";
 export function create({req,res,database}) { 
     const {equipment, description, user_name} = req.body; 
 
-    const { status } = req.query
 
 
     const ticket = {
@@ -12,7 +11,7 @@ export function create({req,res,database}) {
         equipment,
         description,
         user_name, 
-        status: status, 
+        status: "open", 
         created_at : new Date(), 
         updated_at: new Date(),
     }; 
